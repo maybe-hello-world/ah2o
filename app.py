@@ -99,11 +99,12 @@ def parse_and_save(metric: dict):
         qty = value["qty"]
         date = date_to_path(value["date"])
 
+        converted_units = units
         if units == "lb" and CONVERT_LB_TO_KG:
             qty = lb_to_kg(qty)
-            units = "kg"
+            converted_units = "kg"
 
-        save_to_frontmatter(date, name, qty, units)
+        save_to_frontmatter(date, name, qty, converted_units)
 
 
 async def parse_metrics(data: dict):
